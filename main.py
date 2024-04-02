@@ -5,7 +5,7 @@ import openai
 # Flask Constructor
 app = Flask(__name__)
 
-openai.api_key = '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'
+openai.api_key = ''
 
 # decorator to associate 
 # a function with the url
