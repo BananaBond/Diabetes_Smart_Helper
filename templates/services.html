@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+	<div class="overlay overlay-bg"></div>
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					Services
+				</h1>
+				<p class="text-white link-nav"><a href="{{url_for('index')}}">Home </a> <span
+						class="lnr lnr-arrow-right"></span> <a href="{{url_for('services')}}"> Services</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End banner Area -->
+
+
+<!-- Start menu-list Area -->
+<section class="menu-list-area section-gap">
+	<div class="container">
+		<div class="row">
+			<div class="menu-cat mx-auto">
+				<ul class="nav nav-pills" id="pills-tab" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" id="pizza-tab" data-toggle="pill" href="#pizza" role="tab" aria-controls="pizza"
+							aria-selected="true">Pizza</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="bread-tab" data-toggle="pill" href="#bread" role="tab"
+							aria-controls="bread" aria-selected="false">Breads</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="pills-burger-tab" data-toggle="pill" href="#burger" role="tab"
+							aria-controls="pills-burger" aria-selected="false">Burgers</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" id="chicken-tab" data-toggle="pill" href="#chicken" role="tab"
+							aria-controls="chicken" aria-selected="false">Chicken</a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div id="pills-tabContent" class="tab-content absolute">
+			{%for data in alldata%}
+						<div class="tab-pane fade {% if data[1]=='pizza' %} show active {% endif %}" id={{ data[1] }} role="tabpanel" aria-labelledby="{{ data[1] }}-tab">
+							<div class="single-menu-list row justify-content-between align-items-center">
+								<div class="col-lg-8">
+									<a href="#"><h4>{{data[0]}}</h4></a>
+									<p>
+										{{data[2]}}
+									</p>
+								</div>
+								<div class="col-lg-4 flex-row d-flex price-size ">
+									<div class="s-price col">
+											{%if data[6] is not none %}
+										<h4>{{data[3]}}</h4>
+										{%set op1=1%}
+										<a href="{{url_for('addtocart',name=data[0],size=data[3],option=op1)}}" class="genric-btn primary-border small">${{data[6]}}</a>
+										{%else%}
+										<a></a>
+										{%endif%}
+									</div>
+									<div class="s-price col">
+										{%if data[7] is not none %}
+										<h4>{{data[4]}}</h4>
+										{%set op2=2%}
+										<a href="{{url_for('addtocart',name=data[0],size=data[4],option=op2)}}" class="genric-btn primary-border small">${{data[7]}}</a>
+										{%else%}
+										<a></a>
+										{%endif%}
+									</div>
+									<div class="s-price col">
+										{%if data[8] is not none%}
+										<h4>{{data[5]}}</h4>
+										{%set op3=3%}
+										<a href="{{url_for('addtocart',name=data[0],size=data[5],option=op3)}}" class="genric-btn primary-border small">${{data[8]}}</a>
+										{%else%}
+										<a></a>
+										{%endif%}
+									</div>																		
+								</div>
+							</div>	
+																												
+						</div>
+						{%endfor%}
+			
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End menu-list Area -->
+{%endblock%}

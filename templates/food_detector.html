@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+	<div class="overlay overlay-bg"></div>
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					Services
+				</h1>
+				<p class="text-white link-nav"><a href="{{url_for('index')}}">Home </a> <span
+						class="lnr lnr-arrow-right"></span> <a href="{{url_for('services')}}"> Services</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End banner Area -->
+<div class="whole-wrap">
+    <div class="container">
+        <div class="section-top-border">
+            <h3 class="mb-30">EnableMe Food Detector</h3>
+            <div class="row">
+                <div class="col-lg-12">
+                    <blockquote class="generic-blockquote">
+                    Introducing our Food Detection AI—a game-changer in dietary awareness. Simply upload a photo of your meal, and within moments, receive personalized feedback on its healthiness. Our AI meticulously analyzes ingredients, portion sizes, and nutritional values, empowering you to make informed choices aligned with your well-being. With continuous learning and real-time insights, our AI is your trusted companion on the path to healthier eating. Join us and take control of your dietary journey today! 
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <form action="{{ url_for('food_detector') }}" enctype="multipart/form-data" method="POST">
+        <div class="mt-10">
+            <input name="img" type="file"/>
+        </div>
+        <div class="button-group-area">
+            <input type=submit value=Submit>
+        </div>
+    </form>
+     
+    {% if img %}
+    <h1>Your Image</h1>
+    <img src="{{ url_for('static', filename=img) }}" alt="Image" style="width: 600px; height: auto;">
+    {% endif %}
+</div>
+
+
+
+<section class="sample-text-area">
+    {% if text %}
+    <div class="container">
+        <h3 class="text-heading">Evaluation Result</h3>
+        <p class="sample-text">
+            I have detected {{foods}}  <br> 
+            Heres what our fitness agent had to say about your food: {{text}}  
+        </p>
+    </div>
+    {% endif %}
+</section>
+
+{%endblock%}

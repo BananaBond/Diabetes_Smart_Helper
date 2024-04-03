@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+	<div class="overlay overlay-bg"></div>
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					Services
+				</h1>
+				<p class="text-white link-nav"><a href="{{url_for('index')}}">Home </a> <span
+						class="lnr lnr-arrow-right"></span> <a href="{{url_for('services')}}"> Services</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End banner Area -->
+<div class="whole-wrap">
+    <div class="container">
+        <div class="section-top-border">
+            <h3 class="mb-30">EnableMe Smart Agent</h3>
+            <div class="row">
+                <div class="col-lg-12">
+                    <blockquote class="generic-blockquote">
+						Introducing our Diabetes Support Assistant Alex — an invaluable ally for those managing diabetes. Available 24/7, our assistant offers personalized guidance on meal planning, medication management, and lifestyle choices. With customized recommendations, continuous support, and a wealth of knowledge at your fingertips, our assistant empowers you to navigate your diabetes journey with confidence and ease. Whether you're seeking advice, reminders, or motivation, our assistant is here to support you every step of the way. Join us today and take control of your diabetes management effortlessly!
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<section class="sample-text-area">
+	<div class="section-top-border"></div>
+	
+	<div class="container">
+
+		<div class="chat">
+			<p class="sample-text">
+				{% for chat in chats %}
+				<b>{{ chat.sender }} : </b> {{ chat.message }}  <br> 
+				{% endfor %}
+			</p>
+		</div>
+		<div class="section-top-border">
+			<div class="row">
+				<div class="col-lg-8 col-md-8">
+					<form action="{{ url_for('chatbot') }}" method="POST">
+						<div class="mt-10">
+								<input type="text" name="message" placeholder="Message"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required
+									class="single-input">
+							</div>
+		
+						<div class="button-group-area">
+							<input type=submit value=Submit>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	
+</section>
+
+
+
+
+
+{%endblock%}
